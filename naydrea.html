@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surat Cinta untuk Kanaya</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 1;
+      text-align: center;
+    }
+
+    p, .quote {
+      font-size: 1.2em;
+      color: white;
+      text-align: center;
+      max-width: 90%;
+      margin: 20px;
+      animation: slideUp 2s ease-in-out;
+      z-index: 1;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      position: relative;
+      animation: beat 1s infinite;
+      z-index: 1;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50px 50px 0 0;
+      top: 0;
+    }
+
+    .heart::before {
+      left: 50px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .heart::after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: white;
+      color: #ff5e6c;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin: 10px;
+      z-index: 1;
+    }
+
+    button:hover {
+      background-color: #ffe5ec;
+    }
+
+    .message {
+      display: none;
+      font-size: 1em;
+      color: white;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 1;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .photo {
+      margin-top: 30px;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 3s ease-in-out;
+      z-index: 1;
+    }
+
+    .stars, .snow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star, .flake {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    .flake {
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      animation: fall 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="snow" id="snow"></div>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <div class="heart"></div>
+  <h1>Untuk Kanaya Tercinta ❤️</h1>
+  <p>
+    Jika aku bisa menulis perasaan ini dengan kode, setiap barisnya akan berkata "Aku sayang kamu, Kanaya".<br/>
+    Dan dalam setiap perulangan, aku akan memilihmu lagi dan lagi.
+  </p>
+  <div class="quote" id="quoteBox">Kamu adalah sinar matahari dalam gelapku 🌞</div>
+  <button onclick="showMessage()">Klik untuk Pesan Cinta 💌</button>
+  <button onclick="window.location.href='https://wa.me/62851267182655?text=Hai%20Kanaya%2C%20aku%20sayang%20kamu%20%F0%9F%92%96'">Kirim Pesan WhatsApp 💬</button>
+
+  <div class="message" id="loveMessage">
+    Kanaya, kamu adalah titik koma dalam hidupku. Tanpamu, aku akan error. 💻💕
+  </div>
+
+  <img src="foto.jpg" alt="Foto Bersama" class="photo" />
+
+  <script>
+    function showMessage() {
+      document.getElementById('loveMessage').style.display = 'block';
+    }
+
+    function createStars() {
+      const starContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        starContainer.appendChild(star);
+      }
+    }
+
+    function createSnow() {
+      const snowContainer = document.getElementById('snow');
+      for (let i = 0; i < 50; i++) {
+        const flake = document.createElement('div');
+        flake.classList.add('flake');
+        flake.style.left = `${Math.random() * 100}%`;
+        flake.style.animationDuration = `${Math.random() * 5 + 3}s`;
+        flake.style.opacity = Math.random();
+        snowContainer.appendChild(flake);
+      }
+    }
+
+    function rotateQuotes() {
+      const quotes = [
+        "Kamu adalah sinar matahari dalam gelapku 🌞",
+        "Denganmu, semua masalah terasa mudah 🐞",
+        "Kamu membuat hatiku berdetak sempurna 💖",
+        "Kamu adalah sapaan terbaik dan perpisahan terberat 😘",
+        "Kalau cinta itu kode, kamu pasti open source—sempurna untuk dibagi 💌"
+      ];
+      let index = 0;
+      setInterval(() => {
+        document.getElementById('quoteBox').textContent = quotes[index];
+        index = (index + 1) % quotes.length;
+      }, 5000);
+    }
+
+    createStars();
+    createSnow();
+    rotateQuotes();
+  </script>
+</body>
+</html>
